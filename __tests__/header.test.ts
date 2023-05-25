@@ -12,6 +12,6 @@ describe('Header Generation', () => {
             shipment_id: SHIPMENT_ID,
         }
 
-        expect(generate_header(digestTemplate)).toBeDefined();
+        expect(generate_header(digestTemplate.api_key, digestTemplate)).toBeDefined();
     });
 });
