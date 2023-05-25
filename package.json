@@ -39,5 +39,8 @@
     ],
     "bugs": {
         "url": "https://github.com/rikkertthedeveloper/shops-united-sdk/issues"
+    },
+    "dependencies": {
+        "axios": "^1.4.0"
     }
 }

@@ -1,3 +1,4 @@
+import axios from "axios";
 import { DigestFactory } from "./factories";
 import { DateTime, Digest, EndpoindType, EndpoindTypeEnum, EndpointMethod, WebhookState } from "./types";
 import { strict as assert } from 'node:assert';
@@ -17,15 +18,18 @@ export class HttpClient {
     }
 
     async send_request(Endpoint: EndpoindType, Method: EndpointMethod, Payload: any, Digest: any) {
-        const request_result = await fetch(`https://login.parcelpro.nl/api/v3/${EndpoindTypeEnum[Endpoint].toString()}`, {
+        const request_result = await axios({
+            url: `https://login.parcelpro.nl/api/v3/${EndpoindTypeEnum[Endpoint].toString()}`,
             method: Method,
-            body: Payload,
             headers: {
                 "Digest": Digest
-            }
+            },
+
+            validateStatus: () => true,
+            data: Payload,
         })
 
-        return await request_result.json()
+        return request_result.data
     }
 
     validate_key(date: DateTime, HeaderDigest: string) {

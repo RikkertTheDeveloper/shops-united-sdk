@@ -24,6 +24,6 @@ describe('HTTP Testing', () => {
 
         expect(MY_RESULT).toBeDefined()
         expect(MY_RESULT["level"]).toBe("ERROR");
-        expect(MY_RESULT["code"]).toBe(1);
+        expect(MY_RESULT["code"]).toBe(401);
     });
 });
