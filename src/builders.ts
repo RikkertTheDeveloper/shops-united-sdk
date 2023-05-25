@@ -1,5 +1,5 @@
 import { DigestFactory } from "./factories";
-import { EndpoindType, EndpointMethod, WebhookState } from "./types";
+import { Digest, EndpoindType, EndpointMethod, WebhookState } from "./types";
 import { strict as assert } from 'node:assert';
 
 export class HttpClient {
@@ -28,7 +28,7 @@ export class HttpClient {
         });
     }
 
-    validate_key(date: string) {
+    validate_key(date: string): Digest {
         const MY_DIGEST = new DigestFactory(this.api_key, this.user_id)
             .date(date)
             .date_digest();
@@ -36,7 +36,7 @@ export class HttpClient {
         return MY_DIGEST
     }
 
-    get_shipment(shipment_id: number) {
+    get_shipment(shipment_id: number): Digest {
         const MY_DIGEST = new DigestFactory(this.api_key, this.user_id)
             .shipment_id(shipment_id)
             .shipment_digest();
@@ -44,7 +44,7 @@ export class HttpClient {
         return MY_DIGEST
     }
 
-    post_shipment(house_number: number, zip_code: string) {
+    post_shipment(house_number: number, zip_code: string): Digest {
         const MY_DIGEST = new DigestFactory(this.api_key, this.user_id)
             .house_number(house_number)
             .zip_code(zip_code)
@@ -53,7 +53,7 @@ export class HttpClient {
         return MY_DIGEST
     }
 
-    delete_shipment(shipment_id: number) {
+    delete_shipment(shipment_id: number): Digest {
         const MY_DIGEST = new DigestFactory(this.api_key, this.user_id)
             .shipment_id(shipment_id)
             .shipment_digest()
@@ -61,7 +61,7 @@ export class HttpClient {
         return MY_DIGEST
     }
 
-    get_label(shipment_id: number) {
+    get_label(shipment_id: number): Digest {
         const MY_DIGEST = new DigestFactory(this.api_key, this.user_id)
             .shipment_id(shipment_id)
             .shipment_digest()
@@ -69,7 +69,7 @@ export class HttpClient {
         return MY_DIGEST
     }
 
-    post_pickup(shipment_id: number) {
+    post_pickup(shipment_id: number): Digest {
         const MY_DIGEST = new DigestFactory(this.api_key, this.user_id)
             .shipment_id(shipment_id)
             .shipment_digest()
@@ -77,7 +77,7 @@ export class HttpClient {
         return MY_DIGEST
     }
 
-    get_pickup_points(house_number: number, zip_code: string) {
+    get_pickup_points(house_number: number, zip_code: string): Digest {
         const MY_DIGEST = new DigestFactory(this.api_key, this.user_id)
             .house_number(house_number)
             .zip_code(zip_code)
@@ -86,7 +86,7 @@ export class HttpClient {
         return MY_DIGEST
     }
 
-    get_webhooks(date: string) {
+    get_webhooks(date: string): Digest {
         const MY_DIGEST = new DigestFactory(this.api_key, this.user_id)
             .date(date)
             .date_digest();
@@ -94,7 +94,7 @@ export class HttpClient {
         return MY_DIGEST
     }
 
-    post_webhook(web_status: WebhookState) {
+    post_webhook(web_status: WebhookState): Digest {
         const MY_DIGEST = new DigestFactory(this.api_key, this.user_id)
             .web_state(web_status)
             .web_digest();
@@ -102,7 +102,7 @@ export class HttpClient {
         return MY_DIGEST
     }
 
-    delete_webhook(webhook_id: number) {
+    delete_webhook(webhook_id: number): Digest {
         const MY_DIGEST = new DigestFactory(this.api_key, this.user_id)
             .webhook_id(webhook_id)
             .webhook_digest();
@@ -119,12 +119,12 @@ export class HttpBuilder {
         return this;
     }
 
-    api_key(api_key: string) {
+    api_key(api_key: string): this {
         this.key = api_key;
         return this;
     }
 
-    user_id(user_id: number) {
+    user_id(user_id: number): this {
         this.user = user_id;
         return this;
     }
