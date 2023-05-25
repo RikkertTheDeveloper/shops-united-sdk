@@ -2,20 +2,33 @@
     "name": "shops-united",
     "version": "0.0.1",
     "description": "A software development kit for the Shops United platform.",
-    "types": "dist/index.d.ts",
+    "homepage": "https://github.com/rikkertthedeveloper/shops-united-sdk#readme",
+    "author": "Rick Arendsen",
+    "license": "ISC",
+    "main": "dist/src/shops-united.js",
+    "types": "dist/src/shops-united.d.ts",
+    "module": "dist/lib-esm/src/shops-united.js",
+    "engines": {
+        "node": ">=8.1.1"
+    },
     "files": [
         "/dist"
     ],
     "devDependencies": {
-        "rimraf": "^3.0.2"
+        "@babel/preset-env": "^7.21.5",
+        "@babel/preset-typescript": "^7.21.5",
+        "@jest/globals": "^29.5.0",
+        "@types/jest": "^29.5.1",
+        "jest": "^29.5.0",
+        "rimraf": "^3.0.2",
+        "typescript": "^3.5.3"
     },
     "scripts": {
         "clean": "rimraf dist",
         "prebuild": "npm run clean",
-        "build": "tsc"
+        "test": "jest --forceExit --coverage --verbose",
+        "build": "tsc -p ./tsconfig.json"
     },
-    "type": "module",
-    "main": "dist/index.js",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/rikkertthedeveloper/shops-united-sdk.git"
@@ -24,10 +37,7 @@
         "shops-united",
         "ecommerce"
     ],
-    "author": "Rick Arendsen",
-    "license": "ISC",
     "bugs": {
         "url": "https://github.com/rikkertthedeveloper/shops-united-sdk/issues"
-    },
-    "homepage": "https://github.com/rikkertthedeveloper/shops-united-sdk#readme"
+    }
 }
