@@ -1,4 +1,4 @@
-import { HttpBuilder } from "../src/index"
+import { DigestFactory, HttpBuilder, generate_header } from "../src/index"
 import { DateTime } from "../src/types";
 
 describe("HTTPClient Tests", () => {
@@ -26,7 +26,13 @@ describe("HTTPClient Tests", () => {
             .user_id(USER_ID)
             .construct();
 
-        const MY_REQUEST_HEADER = MY_CLIENT.validate_key(CURRENT_DATE);
+        const HEADER_DIGEST = new DigestFactory(API_KEY, USER_ID)
+            .date(CURRENT_DATE)
+            .date_digest();
+
+        const PARSED_HEADER = generate_header(API_KEY, HEADER_DIGEST)
+
+        const MY_REQUEST_HEADER = MY_CLIENT.validate_key(CURRENT_DATE, PARSED_HEADER);
         expect(MY_REQUEST_HEADER).toBeDefined();
     });
 

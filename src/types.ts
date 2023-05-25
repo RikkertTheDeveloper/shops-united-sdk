@@ -16,7 +16,7 @@ export type HSCode = {
     mass: string
 }
 
-export type OrderItem =  {
+export type OrderItem = {
     weight: number,
     length?: number,
     width?: number,
