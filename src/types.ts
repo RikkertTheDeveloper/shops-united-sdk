@@ -1,4 +1,4 @@
-export type Digest =  {
+export type Digest = {
     user_id: number
     api_key: string
 }

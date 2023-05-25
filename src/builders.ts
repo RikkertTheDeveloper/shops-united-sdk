@@ -1,5 +1,5 @@
 import { DigestFactory } from "./factories";
-import { EndpoindType, EndpointMethod } from "./types";
+import { EndpoindType, EndpointMethod, WebhookState } from "./types";
 import { strict as assert } from 'node:assert';
 
 export class HttpClient {
@@ -40,6 +40,72 @@ export class HttpClient {
         const MY_DIGEST = new DigestFactory(this.api_key, this.user_id)
             .shipment_id(shipment_id)
             .shipment_digest();
+
+        return MY_DIGEST
+    }
+
+    post_shipment(house_number: number, zip_code: string) {
+        const MY_DIGEST = new DigestFactory(this.api_key, this.user_id)
+            .house_number(house_number)
+            .zip_code(zip_code)
+            .address_digest();
+
+        return MY_DIGEST
+    }
+
+    delete_shipment(shipment_id: number) {
+        const MY_DIGEST = new DigestFactory(this.api_key, this.user_id)
+            .shipment_id(shipment_id)
+            .shipment_digest()
+
+        return MY_DIGEST
+    }
+
+    get_label(shipment_id: number) {
+        const MY_DIGEST = new DigestFactory(this.api_key, this.user_id)
+            .shipment_id(shipment_id)
+            .shipment_digest()
+
+        return MY_DIGEST
+    }
+
+    post_pickup(shipment_id: number) {
+        const MY_DIGEST = new DigestFactory(this.api_key, this.user_id)
+            .shipment_id(shipment_id)
+            .shipment_digest()
+
+        return MY_DIGEST
+    }
+
+    get_pickup_points(house_number: number, zip_code: string) {
+        const MY_DIGEST = new DigestFactory(this.api_key, this.user_id)
+            .house_number(house_number)
+            .zip_code(zip_code)
+            .address_digest();
+
+        return MY_DIGEST
+    }
+
+    get_webhooks(date: string) {
+        const MY_DIGEST = new DigestFactory(this.api_key, this.user_id)
+            .date(date)
+            .date_digest();
+
+        return MY_DIGEST
+    }
+
+    post_webhook(web_status: WebhookState) {
+        const MY_DIGEST = new DigestFactory(this.api_key, this.user_id)
+            .web_state(web_status)
+            .web_digest();
+
+        return MY_DIGEST
+    }
+
+    delete_webhook(webhook_id: number) {
+        const MY_DIGEST = new DigestFactory(this.api_key, this.user_id)
+            .webhook_id(webhook_id)
+            .webhook_digest();
 
         return MY_DIGEST
     }
