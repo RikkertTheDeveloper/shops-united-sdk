@@ -1,0 +1,28 @@
+{
+  "name": "shops-united",
+  "version": "0.0.1",
+  "description": "A software development kit for the Shops United platform.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
+
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rikkertthedeveloper/shops-united-sdk.git"
+  },
+  "keywords": [
+    "shops-united",
+    "ecommerce"
+  ],
+  "author": "Rick Arendsen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rikkertthedeveloper/shops-united-sdk/issues"
+  },
+  "homepage": "https://github.com/rikkertthedeveloper/shops-united-sdk#readme"
+}
