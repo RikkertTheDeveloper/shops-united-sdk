@@ -1,25 +1,25 @@
 export type Digest =  {
-    UserId: number
-    ApiKey: string
+    user_id: number
+    api_key: string
 }
 
 export interface DateDigest extends Digest {
-    Date: string
+    date: string
 }
 
 export interface ShipmentDigest extends Digest {
-    ShipmentId: number
+    shipment_id: number
 }
 
 export interface AddressDigest extends Digest {
-    HouseNumber: number,
-    ZipCode: string
+    house_number: number,
+    zip_code: string
 }
 
 export interface WebhookDigest extends Digest {
-    WebhookId: number
+    webhook_id: number
 }
 
 export interface WebDigest extends Digest {
-    State: string
+    web_state: string
 }
