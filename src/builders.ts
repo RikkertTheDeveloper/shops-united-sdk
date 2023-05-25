@@ -1,5 +1,5 @@
 import { DigestFactory } from "./factories";
-import { Digest, EndpoindType, EndpointMethod, WebhookState } from "./types";
+import { DateTime, Digest, EndpoindType, EndpointMethod, WebhookState } from "./types";
 import { strict as assert } from 'node:assert';
 
 export class HttpClient {
@@ -28,7 +28,7 @@ export class HttpClient {
         });
     }
 
-    validate_key(date: string): Digest {
+    validate_key(date: DateTime): Digest {
         const MY_DIGEST = new DigestFactory(this.api_key, this.user_id)
             .date(date)
             .date_digest();
@@ -86,7 +86,7 @@ export class HttpClient {
         return MY_DIGEST
     }
 
-    get_webhooks(date: string): Digest {
+    get_webhooks(date: DateTime): Digest {
         const MY_DIGEST = new DigestFactory(this.api_key, this.user_id)
             .date(date)
             .date_digest();

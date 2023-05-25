@@ -1,8 +1,11 @@
 import { HttpBuilder } from "../src/index"
+import { DateTime } from "../src/types";
 
 describe("HTTPClient Tests", () => {
     const USER_ID: number = 1234;
     const API_KEY: string = "fake-key-123";
+    const THIS_DATE = new Date();
+    const CURRENT_DATE: any | DateTime = `${THIS_DATE.getDate()}-${THIS_DATE.getMonth()}-${THIS_DATE.getFullYear()} ${THIS_DATE.getHours()}:${THIS_DATE.getMinutes()}:${THIS_DATE.getSeconds()}`;
 
     it('Construct a new HTTPClient class using the HTTPBuilder class.', () => {
         const MY_CLIENT = new HttpBuilder()
@@ -23,7 +26,7 @@ describe("HTTPClient Tests", () => {
             .user_id(USER_ID)
             .construct();
 
-        const MY_REQUEST_HEADER = MY_CLIENT.validate_key("25-05-2023");
+        const MY_REQUEST_HEADER = MY_CLIENT.validate_key(CURRENT_DATE);
         expect(MY_REQUEST_HEADER).toBeDefined();
     });
 
@@ -93,7 +96,7 @@ describe("HTTPClient Tests", () => {
             .user_id(USER_ID)
             .construct();
 
-        const MY_REQUEST_HEADER = MY_CLIENT.get_webhooks("25-05-2023")
+        const MY_REQUEST_HEADER = MY_CLIENT.get_webhooks(CURRENT_DATE)
         expect(MY_REQUEST_HEADER).toBeDefined()
     });
 

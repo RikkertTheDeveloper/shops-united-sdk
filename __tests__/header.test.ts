@@ -1,4 +1,5 @@
 import { ShipmentDigest, generate_header } from "../src/index"
+import { PostShipmentBody } from "../src/types";
 
 describe('Header Generation', () => {
     it('Construct a header with fake key and arguments.', () => {

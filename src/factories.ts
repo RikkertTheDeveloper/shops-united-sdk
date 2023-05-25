@@ -1,11 +1,11 @@
-import { AddressDigest, DateDigest, Digest, ShipmentDigest, WebDigest, WebhookDigest, WebhookState } from "./types";
+import { AddressDigest, DateDigest, DateTime, ShipmentDigest, WebDigest, WebhookDigest, WebhookState } from "./types";
 import { strict as assert } from 'node:assert';
 
 export class DigestFactory {
     apiKey: string
     userId: number
 
-    shipmentDate?: string
+    shipmentDate?: DateTime
     shipmentId?: number
     houseNumber?: number
     zipCode?: string
@@ -22,7 +22,7 @@ export class DigestFactory {
         return this;
     }
 
-    date(date: string): this {
+    date(date: DateTime): this {
         this.shipmentDate = date;
         return this;
     }
@@ -104,3 +104,5 @@ export class DigestFactory {
         }
     }
 }
+
+
