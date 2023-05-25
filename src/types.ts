@@ -125,19 +125,19 @@ export interface PostShipmentBody extends RequestBody {
     billing_service: BillingService
 }
 
-enum WebhookStateEnum {
+export enum WebhookStateEnum {
     "Printed" = "afgedrukt",
     "Receiving" = "aannamenproces",
     "Delivered" = "afgeleverd"
 }
 
-enum OrderStateEnum {
+export enum OrderStateEnum {
     "Printed" = "Afgedrukt",
     "Processing" = "InProces",
     "Delivered" = "Afgeleverd"
 }
 
-enum EndpoindTypeEnum {
+export enum EndpoindTypeEnum {
     "AuthenticateKey" = "validate.php",
     "GetShipmentOptions" = "type.php",
     "GetShipments" = "zendingen.php",

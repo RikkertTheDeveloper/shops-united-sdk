@@ -1,5 +1,5 @@
 import { DigestFactory } from "./factories";
-import { DateTime, Digest, EndpoindType, EndpointMethod, WebhookState } from "./types";
+import { DateTime, Digest, EndpoindType, EndpoindTypeEnum, EndpointMethod, WebhookState } from "./types";
 import { strict as assert } from 'node:assert';
 
 export class HttpClient {
@@ -12,28 +12,31 @@ export class HttpClient {
 
         this.api_key = api_key;
         this.user_id = user_id
+
+        return this;
     }
 
-    send_request(Endpoint: EndpoindType, Method: EndpointMethod, Payload: BodyInit, Digest: any) {
-        fetch(`https://login.parcelpro.nl/api/v3/${Endpoint}`, {
+    async send_request(Endpoint: EndpoindType, Method: EndpointMethod, Payload: any, Digest: any) {
+        const request_result = await fetch(`https://login.parcelpro.nl/api/v3/${EndpoindTypeEnum[Endpoint].toString()}`, {
             method: Method,
             body: Payload,
             headers: {
                 "Digest": Digest
             }
-        }).then((request_result) => {
-            request_result.json().then((parsed_data) => {
-                return parsed_data;
-            })
-        });
+        })
+
+        return await request_result.json()
     }
 
-    validate_key(date: DateTime): Digest {
+    validate_key(date: DateTime, HeaderDigest: string) {
         const MY_DIGEST = new DigestFactory(this.api_key, this.user_id)
             .date(date)
             .date_digest();
 
-        return MY_DIGEST
+        return this.send_request("AuthenticateKey", "POST", {
+            GebruikerId: MY_DIGEST.user_id,
+            Datum: date
+        }, HeaderDigest)
     }
 
     get_shipment(shipment_id: number): Digest {
@@ -112,8 +115,8 @@ export class HttpClient {
 }
 
 export class HttpBuilder {
-    key: string = "";
-    user: number = 0;
+    key?: string;
+    user?: number;
 
     constructor() {
         return this;
@@ -130,6 +133,9 @@ export class HttpBuilder {
     }
 
     construct() {
+        assert(this.key, "No API key supplied.")
+        assert(this.user, "No UserId supplied.")
+
         return new HttpClient(this.key, this.user);
     }
 }
