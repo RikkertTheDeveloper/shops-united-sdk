@@ -18,6 +18,11 @@ export class HttpClient {
     }
 
     async send_request(Endpoint: EndpoindType, Method: EndpointMethod, Payload: any, Digest: any) {
+        assert(Endpoint, "No endpoint has been supplied.")
+        assert(Method, "No HTTP method has been supplied.")
+        assert(Payload, "No HTTP request body has been supplied.")
+        assert(Digest, "No HTTP header digest has been supplied.")
+
         const request_result = await axios({
             url: `https://login.parcelpro.nl/api/v3/${EndpoindTypeEnum[Endpoint].toString()}`,
             method: Method,
@@ -33,6 +38,9 @@ export class HttpClient {
     }
 
     validate_key(date: DateTime, HeaderDigest: string) {
+        assert(date, "No date has been supplied.")
+        assert(HeaderDigest, "No header digest has been supplied.")
+
         const MY_DIGEST = new DigestFactory(this.api_key, this.user_id)
             .date(date)
             .date_digest();
@@ -44,6 +52,8 @@ export class HttpClient {
     }
 
     get_shipment(shipment_id: number): Digest {
+        assert(shipment_id, "No shipment id has been supplied.")
+
         const MY_DIGEST = new DigestFactory(this.api_key, this.user_id)
             .shipment_id(shipment_id)
             .shipment_digest();
@@ -52,6 +62,9 @@ export class HttpClient {
     }
 
     post_shipment(house_number: number, zip_code: string): Digest {
+        assert(house_number, "No house number has been supplied.")
+        assert(zip_code, "No zip code has been supplied.")
+
         const MY_DIGEST = new DigestFactory(this.api_key, this.user_id)
             .house_number(house_number)
             .zip_code(zip_code)
@@ -61,6 +74,8 @@ export class HttpClient {
     }
 
     delete_shipment(shipment_id: number): Digest {
+         assert(shipment_id, "No shipment id has been supplied.")
+
         const MY_DIGEST = new DigestFactory(this.api_key, this.user_id)
             .shipment_id(shipment_id)
             .shipment_digest()
@@ -69,6 +84,8 @@ export class HttpClient {
     }
 
     get_label(shipment_id: number): Digest {
+        assert(shipment_id, "No shipment id has been supplied.")
+
         const MY_DIGEST = new DigestFactory(this.api_key, this.user_id)
             .shipment_id(shipment_id)
             .shipment_digest()
@@ -77,6 +94,8 @@ export class HttpClient {
     }
 
     post_pickup(shipment_id: number): Digest {
+        assert(shipment_id, "No shipment id has been supplied.")
+
         const MY_DIGEST = new DigestFactory(this.api_key, this.user_id)
             .shipment_id(shipment_id)
             .shipment_digest()
@@ -85,6 +104,9 @@ export class HttpClient {
     }
 
     get_pickup_points(house_number: number, zip_code: string): Digest {
+        assert(house_number, "No house number has been supplied.")
+        assert(zip_code, "No zip code has been supplied.")
+
         const MY_DIGEST = new DigestFactory(this.api_key, this.user_id)
             .house_number(house_number)
             .zip_code(zip_code)
@@ -94,6 +116,8 @@ export class HttpClient {
     }
 
     get_webhooks(date: DateTime): Digest {
+        assert(date, "No date has been supplied.")
+
         const MY_DIGEST = new DigestFactory(this.api_key, this.user_id)
             .date(date)
             .date_digest();
@@ -102,6 +126,8 @@ export class HttpClient {
     }
 
     post_webhook(web_status: WebhookState): Digest {
+        assert(web_status, "No web status has been supplied.")
+
         const MY_DIGEST = new DigestFactory(this.api_key, this.user_id)
             .web_state(web_status)
             .web_digest();
@@ -110,6 +136,8 @@ export class HttpClient {
     }
 
     delete_webhook(webhook_id: number): Digest {
+        assert(webhook_id, "No webhook id has been supplied.")
+
         const MY_DIGEST = new DigestFactory(this.api_key, this.user_id)
             .webhook_id(webhook_id)
             .webhook_digest();
