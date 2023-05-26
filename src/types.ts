@@ -137,6 +137,14 @@ export enum OrderStateEnum {
     "Delivered" = "Afgeleverd"
 }
 
+export enum DigestTypeEnum {
+    "DateDigest",
+    "ShipmentDigest",
+    "AddressDigest",
+    "WebhookDigest",
+    "WebDigest",
+}
+
 export enum EndpoindTypeEnum {
     "AuthenticateKey" = "validate.php",
     "GetShipmentOptions" = "type.php",
@@ -184,3 +192,4 @@ export type EndpoindType = keyof typeof EndpoindTypeEnum;
 export type EndpointMethod = keyof typeof EndpointMethodEnum;
 export type OrderState = keyof typeof OrderStateEnum;
 export type IncoTerm = keyof typeof IncoTermEnum;
+export type DigestType = keyof typeof DigestTypeEnum;

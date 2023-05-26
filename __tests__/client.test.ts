@@ -5,7 +5,8 @@ describe("HTTPClient Tests", () => {
     const USER_ID: number = 1234;
     const API_KEY: string = "fake-key-123";
     const THIS_DATE = new Date();
-    const CURRENT_DATE: any | DateTime = `${THIS_DATE.getDate()}-${THIS_DATE.getMonth()}-${THIS_DATE.getFullYear()} ${THIS_DATE.getHours()}:${THIS_DATE.getMinutes()}:${THIS_DATE.getSeconds()}`;
+    const SPLIT_DATE = Date().split(" ");
+    var CURRENT_DATE: DateTime | any = SPLIT_DATE[3] + "-" + (THIS_DATE.getMonth() < 10 ? `0${THIS_DATE.getMonth()}` : THIS_DATE.getMonth()) + "-" + SPLIT_DATE[2] + " " + SPLIT_DATE[4]
 
     it('Construct a new HTTPClient class using the HTTPBuilder class.', () => {
         const MY_CLIENT = new HttpBuilder()
