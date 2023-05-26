@@ -2,3 +2,4 @@ export { Digest, AddressDigest, DateDigest, ShipmentDigest, WebDigest, WebhookDi
 export { generate_header } from "./utilities"
 export { HttpBuilder } from "./builders"
 export { DigestFactory } from "./factories"
+export { FormatterBuilder } from "./formatter"

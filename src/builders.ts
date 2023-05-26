@@ -38,7 +38,7 @@ export class HttpClient {
             .date_digest();
 
         return this.send_request("AuthenticateKey", "POST", {
-            GebruikerId: MY_DIGEST.user_id,
+            GebruikerId: this.user_id,
             Datum: date
         }, HeaderDigest)
     }
